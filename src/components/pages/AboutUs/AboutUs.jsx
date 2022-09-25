@@ -31,11 +31,11 @@ const AboutUs = () => {
                         <div className="description">Game designer/developer</div>
                     </div>
                     <a href="https://www.linkedin.com/in/martspain/">
-                        <img src={linkedIn} id="link" alt="linkedIn" width="50px" />
+                        <img src={linkedIn} id="link" alt="linkedIn" width="50px"/>
                     </a>
                 </div>
                 <div className="person">
-                    <img src={laura} id="picture1" alt="LauraTamath" />
+                    <img src={laura} id="picture1" alt="LauraTamath"  />
                     <h1>Laura Tamath</h1>
                     <div className="descContainer">
                         <div className="description">Front-end developer</div>

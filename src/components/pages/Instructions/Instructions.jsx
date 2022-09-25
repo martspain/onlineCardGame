@@ -7,7 +7,7 @@ const Instructions = () => {
         <div className="title">How to
             <div class="title2">play</div>
         </div>
-        <div className="containerText">
+        <div className="instructionsText">
             <ul>
                 <li>Take turns with your opponent to choose a card from the deck and start the battle.</li>
                 <li>Fire melts snow, water extinguishes fire, and snow freezes water.</li>

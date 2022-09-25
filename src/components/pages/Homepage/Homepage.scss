@@ -4,7 +4,7 @@
 }
 
 @font-face {
-  font-family: textFont;
+  font-family: subtitleFont;
   src: url(../../../assets/fonts/CCComicrazy.TTF);
 }
 
@@ -57,7 +57,7 @@ a{
 .menuLinkContainer{
   text-align: center;
   width: 15vw;
-  font-family: textFont;
+  font-family: subtitleFont;
   border-radius: 50%;
   &:hover{
     color: #153365;

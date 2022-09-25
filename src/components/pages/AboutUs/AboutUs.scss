@@ -1,0 +1,66 @@
+@font-face {
+    font-family: titleFont;
+    src: url(../../../assets/fonts/BUMBASTI.TTF);
+}
+  
+@font-face {
+font-family: subtitleFont;
+src: url(../../../assets/fonts/CCComicrazy.TTF);
+}
+  
+.aboutUsContainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.title{
+    display: inline-flex;
+    font-family: titleFont;
+    color: white;
+    font-size: 2.5em;
+    -webkit-text-stroke: 0.04em black;
+    text-align: center;
+    margin-bottom: 6.5vh;
+}
+
+.title .title2{
+    color: #ffb842;
+    margin-left: 0.8vw;
+}
+
+.picturesContainer{
+    display: inline-flex;
+    flex-direction: row;
+    width: 50%;
+    height: fit-content;
+    justify-content: space-between;
+}
+
+.person h1{
+    text-align: center;
+    color: white;
+    font-family: subtitleFont;
+}
+
+.person a{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    margin-top: 2vh;
+}
+
+.descContainer{
+    height: 9vh;
+}
+
+.description{
+    text-align: center;
+    color: white;
+    font-family: 'Lucida Sans'; 
+}

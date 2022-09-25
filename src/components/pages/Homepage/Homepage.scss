@@ -1,5 +1,16 @@
+@font-face {
+  font-family: titleFont;
+  src: url(../../../assets/fonts/BUMBASTI.TTF);
+}
+
+@font-face {
+  font-family: textFont;
+  src: url(../../../assets/fonts/CCComicrazy.TTF);
+}
+
 .menuContainer{
   display: flex;
+  padding: 2.5vh 0 0 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -17,13 +28,20 @@
 }
 
 .homeTitle{
-  color: yellowgreen;
-  font-size: 3.5em;
-  margin-bottom: 10vh;
+  font-family: titleFont;
+  -webkit-text-stroke: 0.04em black;
+  color: white;
+  font-size: 2.5em;
+  text-align: center;
+}
+
+.homeTitle .title2{
+  color: #ffb842;
+  font-size: 1.5em;
 }
 
 body{
-  background-color: #2E0249;
+  background-color: #0069ba;
   overflow: hidden;
 }
 
@@ -39,17 +57,18 @@ a{
 .menuLinkContainer{
   text-align: center;
   width: 15vw;
+  font-family: textFont;
   border-radius: 50%;
   &:hover{
-    color: #F806CC;
+    color: #153365;
     box-shadow:
-      inset 0 0 50px #fffffff0,      /* inner white */
-      inset 20px 0 80px #f0f,   /* inner left magenta short */
-      inset -20px 0 80px #0ff,  /* inner right cyan short */
-      inset 20px 0 300px #f0f,  /* inner left magenta broad */
-      inset -20px 0 300px #0ff, /* inner right cyan broad */
-      0 0 50px #fff,            /* outer white */
-      -10px 0 80px #f0f,        /* outer left magenta */
-      10px 0 80px #0ff;         /* outer right cyan */
+      inset 0 0 50px #25457c,      /* inner white */
+      inset 20px 0 80px #153365,   /* inner left magenta short */
+      inset -20px 0 80px #25457c,  /* inner right cyan short --*/
+      inset 20px 0 300px #2b4572,  /* inner left magenta broad */
+      inset -20px 0 300px #25457c, /* inner right cyan broad --*/
+      0 0 50px rgb(159, 185, 248),            /* outer white */
+      -10px 0 80px #0069ba,        /* outer left magenta */
+      10px 0 80px #0069ba;         /* outer right cyan */
   }
 }

@@ -5,7 +5,9 @@ import './Homepage.scss'
 const Homepage = () => {
   return (
     <div className="homeContainer">
-      <div className="homeTitle">Online Card Game: Card Jitsu</div>
+      <div className="homeTitle">Online Card Game:
+        <div className="title2">Card Jitsu</div>
+      </div>
       <div className="menuContainer">
         <div className="menuLinkContainer">  
           <Link to={'/play'}>

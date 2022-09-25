@@ -43,6 +43,16 @@
 body{
   background-color: #0069ba;
   overflow: hidden;
+
+  @font-face {
+    font-family: titleFont;
+    src: url(../../../assets/fonts/BUMBASTI.TTF);
+  }
+  
+  @font-face {
+  font-family: subtitleFont;
+  src: url(../../../assets/fonts/CCComicrazy.TTF);
+  }
 }
 
 .menuLink{

@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider, Route } from "react-router-dom"
 import Homepage from "./components/pages/Homepage/Homepage"
 import ErrorPage from "./components/pages/ErrorPage/ErrorPage"
 import AboutUs from "./components/pages/AboutUs/AboutUs"
+import Credits from "./components/pages/Credits/credits"
+import Instructions from "./components/pages/Instructions/Instructions"
 
 const router = createBrowserRouter([
     // This array is to add new routes to the app.
@@ -11,6 +13,16 @@ const router = createBrowserRouter([
         path: "/",
         element: <Homepage />,
         errorElement: <ErrorPage />,
+    },
+    {
+        path: "/instructions",
+        element: <Instructions />,
+        errorElement: <ErrorPage />
+    },
+    {
+        path: "/credits",
+        element: <Credits />,
+        errorElement: <ErrorPage />
     },
     {
         path: "/about",

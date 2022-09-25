@@ -1,0 +1,53 @@
+
+.creditsContainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.title{
+    display: inline-flex;
+    font-family: titleFont;
+    color: white;
+    font-size: 3.5em;
+    -webkit-text-stroke: 0.04em black;
+    text-align: center;
+    margin-bottom: 6.5vh;
+}
+
+.title .title2{
+    color: #ffb842;
+}
+
+.containerText{
+    text-align: left;
+    color: white;
+    font-family: 'Lucida Sans';
+    width: 35%;
+    font-size: larger;
+    display: block;
+    margin-bottom: 2.5vh;
+}
+
+.category{
+    font-family: subtitleFont;
+    font-size: 2em;
+    margin-bottom: 2vh;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category .line{
+    background: #153365;
+    justify-content: flex-end;
+    width: 18vw;
+    height: 0.6vh;
+}
+

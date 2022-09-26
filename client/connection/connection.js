@@ -4,3 +4,5 @@ const ENDPOINT = 'http://localhost:8081'
 const socket = socketIOClient(ENDPOINT)
 
 socket.on('connection');
+
+export default socket;

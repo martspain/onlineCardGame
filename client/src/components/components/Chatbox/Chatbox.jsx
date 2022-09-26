@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import socket from '../../../../connection/connection'
 import chatIcon from '../../../assets/images/icons/chatIcon.png'
 import './Chatbox.scss'
 
@@ -6,14 +7,7 @@ const Chatbox = () => {
   
   const [openState, setOpenState] = useState(false)
   const [currentMessage, setCurrentMessage] = useState('')
-  const [messageLog, setMessageLog] = useState([
-    {
-      from: '1234-ABCD',
-      fromName: 'Martin',
-      message: 'Hola que tal? quiero ver como se ve un string largo y un mensaje aqui',
-      sentAt: new Date().toLocaleTimeString()
-    }
-  ])
+  const [messageLog, setMessageLog] = useState([])
 
   const sendMessage = () => {
     let copyCurrent = currentMessage
@@ -23,12 +17,22 @@ const Chatbox = () => {
       setMessageLog([
         ...messageLog,
         {
-          from: '4321-DCBA',
-          fromName: 'You',
-          message: currentMessage,
-          sentAt: new Date().toLocaleTimeString(),
+          from: socket.id, // Current user Unique ID
+          fromName: 'You', // This is to show 'you' to user
+          message: currentMessage, // This is the current message
+          sentAt: new Date().toLocaleTimeString(), // This is the time
+          session: '1234' // This is the number of the session used
         }
       ])
+      const messToSend = {
+        from: socket.id,
+        fromName: 'User X',
+        message: currentMessage,
+        sentAt: new Date().toLocaleTimeString(),
+        session: '1234'
+      }
+      socket.emit('message', messToSend)
+      console.log(socket.id)
     }
     else{
       alert('Cannot send empty message.')
@@ -38,10 +42,21 @@ const Chatbox = () => {
     updateChatScroll()
   }
 
+  const updateChatLog = (incomingMessage) => {
+    setMessageLog([
+      ...messageLog,
+      incomingMessage
+    ])
+  }
+
   const updateChatScroll = () => {
     const element = document.getElementById('messageChatBox')
     element.scrollTop = element.scrollHeight
   }
+
+  useEffect(() => {
+    socket.on('message', (data) => updateChatLog(data))
+  }, [])
   
   return (
     <>
@@ -52,11 +67,11 @@ const Chatbox = () => {
             Close
           </div>
           <div className='chatContentsContainer'>
-            <div className='chatBox'>
+            <div className='chatBox' id='messageChatBox'>
               {
                 messageLog.map((mess, ind) => {
                   return(
-                    <div id='messageChatBox' className='messageContainer' key={`${mess.from} - ${ind}`}>
+                    <div className='messageContainer' key={`${mess.from} - ${ind}`}>
                       <p className='messageTime'>{mess.sentAt}</p>
                       -
                       <p className='messageBody'><b>{`${mess.fromName}: `}</b>{mess.message}</p>

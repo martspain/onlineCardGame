@@ -1,0 +1,160 @@
+@import 'src/style/responsive';
+
+.closedChatContainer{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  bottom: 2vh ;
+  // background-color: navy;
+  height: 20vw;
+  // max-width: fit-content;
+  width: 20vw;
+  right: 5vw;
+  border-radius: 50%;
+  
+  // Support for mobile devices
+  @include xl {
+    background-color: navy;
+    border-radius: 0%;
+    position: fixed;
+    bottom: 0%;
+    height: 7vh;
+    width: 30vw;
+    max-width: 30vw;
+    right: 5vw;
+  }
+}
+
+.openChatContainer{
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background-color: cyan;
+  bottom: 2vh ;
+  height: 50vw;
+  width: 40vw;
+  right: 5vw;
+  border-radius: 10%;
+  font-size: 3em;
+  
+  // Support for mobile devices
+  @include xl {
+    position: fixed;
+    bottom: 0%;
+    border-radius: 0%;
+    height: 35vw;
+    width: 30vw;
+  }
+}
+
+.chatImage{
+  @include xl {
+    // display: none;
+  }
+}
+
+.chatContentsContainer{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // margin-top: 1vh;
+  width: 38vw;
+  height: 17vh;
+  // background-color: navy;
+
+  @include xl {
+    height: 31vw;
+    width: 30vw;
+  }
+}
+
+.chatInput{
+  width: 25vw;
+  height: 2vh;
+  font-size: 2vw;
+
+  @include xl {
+    height: 5vh;
+    width: 20vw;
+    font-size: 2vw;
+  }
+}
+
+.closeChatButton{
+  height: 3vh;
+  width: 40vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 2%;
+  background-color: #dc3545;
+  @include xl {
+    height: 5vh;
+    width: 30vw;
+    border-radius: 0%;
+  }
+}
+
+.chatFooter{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  bottom: 3%;
+}
+
+.chatBox{
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.5em;
+  height: 30vw;
+  
+  @include xl {
+    // height: 100vw;
+    // padding-left: 1vw;
+    width: 30vw;
+    height: 26.5vw;
+  }
+}
+
+.chatSendButton{
+  background-color: #007bff;
+  height: 2vh;
+  padding: 0vh 1vw;
+  border-radius: 5%;
+  font-size: 0.7em;
+  margin-left: 1vw;
+
+  @include xl{
+    background-color: #007bff;
+    height: 5vh;
+    border-radius: 5%;
+    margin-left: 1vw;
+  }
+}
+
+.messageContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.messageBody{
+  margin-left: 1vw;
+  width: 25vw;
+
+  @include xl {
+    width: 19vw;
+  }
+}
+
+.messageTime{
+  margin-right: 1vw;
+  margin-left: 1vw;
+  font-size: 0.75em;
+}

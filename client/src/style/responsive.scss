@@ -1,0 +1,28 @@
+$phone-landscape: 576px;
+$tablet-portrait: 768px;
+$tablet-landscape: 992px;
+$desktop: 1200px;
+
+@mixin sm {
+  @media (min-width: $phone-landscape){
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: $tablet-portrait){
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: $tablet-landscape){
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: $desktop){
+    @content;
+  }
+}

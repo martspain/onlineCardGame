@@ -12,12 +12,12 @@ import '../connection/connection'
 const router = createBrowserRouter([
     // This array is to add new routes to the app.
     {
-        path: "/play", // TODO: change /play for /
+        path: "/",
         element: <Homepage />,
         errorElement: <ErrorPage />,
     },
     {
-        path: "/", //TODO: change / for /play
+        path: "/play",
         element: <CreateSession />,
         errorElement: <ErrorPage />,
     },

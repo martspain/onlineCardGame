@@ -8,14 +8,15 @@ const Chatbox = () => {
   const [openState, setOpenState] = useState(false)
   const [currentMessage, setCurrentMessage] = useState('')
   const [messageLog, setMessageLog] = useState([])
+  let hasReceivedMessage = false
 
   const sendMessage = () => {
     let copyCurrent = currentMessage
     copyCurrent = copyCurrent.replace(/ +/, '')
 
     if (copyCurrent !== '' && copyCurrent !== ' '){
-      setMessageLog([
-        ...messageLog,
+      setMessageLog(current => [
+        ...current,
         {
           from: socket.id, // Current user Unique ID
           fromName: 'You', // This is to show 'you' to user
@@ -32,7 +33,6 @@ const Chatbox = () => {
         session: '1234'
       }
       socket.emit('message', messToSend)
-      console.log(socket.id)
     }
     else{
       alert('Cannot send empty message.')
@@ -43,10 +43,16 @@ const Chatbox = () => {
   }
 
   const updateChatLog = (incomingMessage) => {
-    setMessageLog([
-      ...messageLog,
-      incomingMessage
-    ])
+    if (!messageLog.includes(incomingMessage) && !hasReceivedMessage){
+      setMessageLog(current => [
+        ...current,
+        incomingMessage
+      ])
+      hasReceivedMessage = true
+    }
+    else{
+      hasReceivedMessage = false
+    }
   }
 
   const updateChatScroll = () => {

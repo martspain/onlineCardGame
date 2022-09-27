@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import swal from 'sweetalert'
 import socket from '../../../../connection/connection'
 import chatIcon from '../../../assets/images/icons/chatIcon.png'
 import './Chatbox.scss'
@@ -37,7 +38,7 @@ const Chatbox = (props) => {
       socket.emit('message', messToSend)
     }
     else{
-      alert('Cannot send empty message.')
+      swal('Warning', 'Cannot send empty message.', 'warning')
     }
 
     setCurrentMessage('')

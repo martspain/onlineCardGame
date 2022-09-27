@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+import socket from "../../../../connection/connection";
 import './CreateSession.scss'
 
 const CreateSession = () => {
@@ -31,9 +33,9 @@ const CreateSession = () => {
     } else if (!createSession && currentJoinSessionID.length === sessionIDLength && currentJoinSessionID !== '' && currentName !== ''){
       navigation(`/play/${currentJoinSessionID}/${currentName.replace(/ +/, '_')}`)
     } else if (!createSession && (currentJoinSessionID.length !== sessionIDLength || currentJoinSessionID !== '')) {
-      alert('Session ID is not correct.')
+      swal('Warning', 'Session ID is not correct.', 'warning')
     } else if (currentName === '') {
-      alert('Your name is empty. Please write your name.')
+      swal('Warning', 'Your name is empty. Please write your name.', 'warning')
     }
   }
 

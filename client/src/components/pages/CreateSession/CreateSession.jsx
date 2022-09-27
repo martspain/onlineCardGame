@@ -11,11 +11,13 @@ const CreateSession = () => {
   const [currentCreateSessionID, setCurrentCreateSessionID] = useState('AAAA')
   const [currentJoinSessionID, setCurrentJoinSessionID] = useState('')
   const [isJoinServerActive, setIsJoinServerActive] = useState(false)
+  const [currentActiveSessions, setCurrentActiveSessions] = useState([])
 
   const sessionCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
   const sessionIDLength = 4 // Length of the session ID
 
   const generateNewSessionID = () => {
+    socket.emit('getActiveSessions')
     let newSessionID = ''
 
     for (let i = 0; i < sessionIDLength; i++) {
@@ -28,10 +30,33 @@ const CreateSession = () => {
   }
 
   const navigateToSession = (createSession) => {
+    console.log(currentActiveSessions)
     if (createSession && currentName !== '') {
-      navigation(`/play/${currentCreateSessionID}/${currentName.replace(/ +/, '_')}`)
+      if (!currentActiveSessions.includes(currentCreateSessionID)){
+        socket.emit('createSession', {
+          id: currentCreateSessionID,
+          players: [{
+            userId: socket.id,
+            alias: currentName
+          }]
+        })
+        navigation(`/play/${currentCreateSessionID}/${currentName.replace(/ +/, '_')}`)
+      } else {
+        swal('Warning', 'Session ID is already in use. Please try again.', 'warning')
+      }
     } else if (!createSession && currentJoinSessionID.length === sessionIDLength && currentJoinSessionID !== '' && currentName !== ''){
-      navigation(`/play/${currentJoinSessionID}/${currentName.replace(/ +/, '_')}`)
+      if (currentActiveSessions.find((elem) => elem.id === currentJoinSessionID).players.length < 4) {
+        socket.emit('joinSession', {
+          id: currentJoinSessionID,
+          players: [{
+            userId: socket.id,
+            alias: currentName
+          }]
+        })
+        navigation(`/play/${currentJoinSessionID}/${currentName.replace(/ +/, '_')}`)
+      } else {
+        swal('Warning', 'The session you are trying to join is full.', 'warning')  
+      }
     } else if (!createSession && (currentJoinSessionID.length !== sessionIDLength || currentJoinSessionID !== '')) {
       swal('Warning', 'Session ID is not correct.', 'warning')
     } else if (currentName === '') {
@@ -39,8 +64,17 @@ const CreateSession = () => {
     }
   }
 
+  const updateActiveSessions = (newSessions) => {
+    console.log('NewState: ', newSessions)
+    setCurrentActiveSessions(newSessions)
+  }
+
   useEffect(()=>{
     generateNewSessionID()
+  }, [])
+
+  useEffect(()=>{
+    socket.on('session', (activeSessions) => updateActiveSessions(activeSessions))
   }, [])
 
   return (

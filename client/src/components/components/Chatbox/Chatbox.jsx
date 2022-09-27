@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import socket from '../../../../connection/connection'
 import chatIcon from '../../../assets/images/icons/chatIcon.png'
 import './Chatbox.scss'
 
-const Chatbox = () => {
-  
+const Chatbox = (props) => {
+  const params = useParams()
+
   const [openState, setOpenState] = useState(false)
   const [currentMessage, setCurrentMessage] = useState('')
   const [messageLog, setMessageLog] = useState([])
@@ -22,15 +24,15 @@ const Chatbox = () => {
           fromName: 'You', // This is to show 'you' to user
           message: currentMessage, // This is the current message
           sentAt: new Date().toLocaleTimeString(), // This is the time
-          session: '1234' // This is the number of the session used
+          session: params.sessionid // This is the number of the session used
         }
       ])
       const messToSend = {
         from: socket.id,
-        fromName: 'User X',
+        fromName: props.nickname,
         message: currentMessage,
         sentAt: new Date().toLocaleTimeString(),
-        session: '1234'
+        session: params.sessionid
       }
       socket.emit('message', messToSend)
     }
@@ -43,7 +45,7 @@ const Chatbox = () => {
   }
 
   const updateChatLog = (incomingMessage) => {
-    if (!messageLog.includes(incomingMessage) && !hasReceivedMessage){
+    if (!messageLog.includes(incomingMessage) && !hasReceivedMessage && params.sessionid === incomingMessage.session){
       setMessageLog(current => [
         ...current,
         incomingMessage

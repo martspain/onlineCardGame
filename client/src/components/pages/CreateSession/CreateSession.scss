@@ -1,0 +1,81 @@
+@import 'src/style/responsive';
+
+.createSessionContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100%;
+}
+
+.createSessionTitle{
+  font-size: 3em;
+  color: white;
+  margin-bottom: 5vw;
+}
+
+.createSessionOptionsContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.createSessionNameContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 2vw;
+}
+
+.nameTitle{
+  color: white;
+}
+
+.nameInput{
+  margin-left: 1vw;
+  height: 3vw;
+  width: 11vw;
+  text-align: center;
+}
+
+.createSessionButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2vw;
+  background-color: cyan;
+  height: 3vw;
+  width: 20vw;
+  box-shadow: 2px 2px;
+}
+
+.joinServerButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1vw;
+  background-color: cyan;
+  height: 3vw;
+  width: 20vw;
+  box-shadow: 2px 2px;
+}
+
+.joinServerConfirmButton{
+  background-color: lightgreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1vw;
+  height: 3vw;
+  width: 20vw;
+  box-shadow: 2px 2px;
+}
+
+.joinSessionInput{
+  height: 3vw;
+  width: 11vw;
+  text-align: center;
+  margin-bottom: 1vw;
+}

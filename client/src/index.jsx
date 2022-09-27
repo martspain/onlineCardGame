@@ -7,6 +7,7 @@ import AboutUs from "./components/pages/AboutUs/AboutUs"
 import Credits from "./components/pages/Credits/credits"
 import Instructions from "./components/pages/Instructions/Instructions"
 import CreateSession from "./components/pages/CreateSession/CreateSession"
+import Game from "./components/pages/Game/Game"
 import '../connection/connection'
 
 const router = createBrowserRouter([
@@ -19,6 +20,11 @@ const router = createBrowserRouter([
     {
         path: "/play",
         element: <CreateSession />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/play/:sessionid/:alias",
+        element: <Game />,
         errorElement: <ErrorPage />,
     },
     {

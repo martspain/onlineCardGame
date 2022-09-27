@@ -14,8 +14,8 @@
   
   // Support for mobile devices
   @include xl {
-    background-color: navy;
-    border-radius: 0%;
+    background-color: #153365;
+    border-radius: 0.5em  0.5em 0 0;
     position: fixed;
     bottom: 0%;
     height: 7vh;
@@ -31,19 +31,21 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  background-color: cyan;
+  background-color: #15326542;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.299), 0px 4px 4px rgba(0, 0, 0, 0.293);
   bottom: 2vh ;
   height: 50vw;
   width: 40vw;
   right: 5vw;
   border-radius: 10%;
   font-size: 3em;
+
   
   // Support for mobile devices
   @include xl {
     position: fixed;
     bottom: 0%;
-    border-radius: 0%;
+    border-radius: 0.5em  0.5em 0 0;
     height: 35vw;
     width: 30vw;
   }
@@ -74,28 +76,42 @@
 .chatInput{
   width: 25vw;
   height: 2vh;
+  font-size: 0.5em;
+  font-family: subtitleFont;
   font-size: 2vw;
 
   @include xl {
     height: 5vh;
     width: 20vw;
-    font-size: 2vw;
+    font-size: 0.4em;
+    border-radius: 0.3em;
+    border-color: transparent;
   }
 }
 
 .closeChatButton{
-  height: 3vh;
+  height: 3.5vh;
   width: 40vw;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  color: white;
   border-radius: 2%;
-  background-color: #dc3545;
+  font-family: titleFont;
+  color: white;
+  font-size: 1.5em;
+  -webkit-text-stroke: 0.04em black;
+  font-size: 0.5em;
+  background-color: #153365;
+
+  .closePart2{
+    color: #ffb842;
+    margin-left: 0;
+  }
+
   @include xl {
-    height: 5vh;
+    height: 6.5vh;
     width: 30vw;
-    border-radius: 0%;
+    border-radius: 0.5em  0.5em 0 0;
   }
 }
 
@@ -128,18 +144,26 @@
   padding: 0vh 1vw;
   border-radius: 5%;
   font-size: 0.7em;
+  align-items: center;
+  color: white;
+  font-family: subtitleFont;
+  font-size: 0.5em;
   margin-left: 1vw;
+  display: flex;
+  align-items: center;
 
   @include xl{
     background-color: #007bff;
     height: 5vh;
-    border-radius: 5%;
+    border-radius: 0.3em;
     margin-left: 1vw;
   }
 }
 
 .messageContainer{
   display: flex;
+  font-family: subtitleFont; 
+  font-size: 0.8em;
   flex-direction: row;
   align-items: center;
 }

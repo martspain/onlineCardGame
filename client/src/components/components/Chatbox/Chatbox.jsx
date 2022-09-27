@@ -70,7 +70,8 @@ const Chatbox = () => {
         openState ?
         <div className='openChatContainer'>
           <div className='closeChatButton' onClick={() => {setOpenState(false)}}>
-            Close
+            Clo
+            <div className='closePart2'>se</div>
           </div>
           <div className='chatContentsContainer'>
             <div className='chatBox' id='messageChatBox'>
@@ -88,7 +89,7 @@ const Chatbox = () => {
             </div>
             <div className='chatFooter'>
               <input className='chatInput' value={currentMessage} placeholder='Type your message...' onChange={(ev) => setCurrentMessage(ev.target.value)} />
-              <div className='chatSendButton' onClick={() => sendMessage()}>Send</div>
+              <div className='chatSendButton' onClick={() => sendMessage()}>send</div>
             </div>
           </div>
         </div>

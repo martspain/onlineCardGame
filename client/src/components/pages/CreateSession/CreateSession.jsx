@@ -79,7 +79,10 @@ const CreateSession = () => {
 
   return (
     <div className="createSessionContainer">
-      <div className="createSessionTitle">{`New Match - ${currentName}`}</div>
+      <div className="createSessionTitle">
+        New Match - 
+        <div className="yellow">{`${currentName}`}</div>
+      </div>
       <div className="createSessionOptionsContainer">
         <div className="createSessionNameContainer">
           <div className="nameTitle">Write your name:</div>
@@ -92,7 +95,7 @@ const CreateSession = () => {
           <div className="joinServerButton" onClick={() => setIsJoinServerActive(true)}>Join server</div>
           :
           <input className="joinSessionInput" value={currentJoinSessionID} onChange={(e) => setCurrentJoinSessionID(e.target.value.toLocaleUpperCase())}
-          placeholder={'Insert the session ID...'}
+          placeholder={'Insert the session ID'}
           ></input>
         }
         {isJoinServerActive &&

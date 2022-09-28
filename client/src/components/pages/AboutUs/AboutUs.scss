@@ -44,7 +44,13 @@
     justify-content: center;
     text-decoration: none;
     margin-top: 2vh;
+    cursor: pointer;
     height: auto;
+    filter: blur(1px);
+}
+
+.person a:hover{
+    filter: blur(0px);
 }
 
 .descContainer{
@@ -54,5 +60,5 @@
 .description{
     text-align: center;
     color: white;
-    font-family: 'Lucida Sans'; 
+    font-family: subtitleFont; 
 }

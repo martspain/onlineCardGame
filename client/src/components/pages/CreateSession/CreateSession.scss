@@ -10,9 +10,16 @@
 }
 
 .createSessionTitle{
-  font-size: 3em;
-  color: white;
   margin-bottom: 5vw;
+  font-family: titleFont;
+  color: white;
+  font-size: 3em;
+  -webkit-text-stroke: 0.04em black;
+  display: inline-flex;
+  .yellow{
+    color: #ffb842;
+    margin-left: 0.5em;
+  }
 }
 
 .createSessionOptionsContainer{
@@ -30,6 +37,7 @@
 }
 
 .nameTitle{
+  font-family: subtitleFont;
   color: white;
 }
 
@@ -37,7 +45,10 @@
   margin-left: 1vw;
   height: 3vw;
   width: 11vw;
+  font-family: subtitleFont;
   text-align: center;
+  border-radius: 0.3em;
+  border-color: transparent;
 }
 
 .createSessionButton{
@@ -45,10 +56,14 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 2vw;
-  background-color: cyan;
+  background-color: #153365;
+  cursor: pointer;
   height: 3vw;
   width: 20vw;
-  box-shadow: 2px 2px;
+  color: white;
+  font-family: subtitleFont;
+  border-radius: 0.5em;
+  font-size: 0.8em;
 }
 
 .joinServerButton{
@@ -56,26 +71,66 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 1vw;
-  background-color: cyan;
+  font-family: subtitleFont;
+  background-color: #153365;
+  font-size: 0.8em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  color: white;
   height: 3vw;
   width: 20vw;
-  box-shadow: 2px 2px;
 }
 
 .joinServerConfirmButton{
-  background-color: lightgreen;
+  background-color: #153365;
   display: flex;
+  cursor: pointer;
   justify-content: center;
   align-items: center;
   margin-bottom: 1vw;
   height: 3vw;
+  color: white;
+  font-family: subtitleFont;
+  border-radius: 0.5em;
   width: 20vw;
-  box-shadow: 2px 2px;
+}
+
+.joinServerConfirmButton:hover{
+  filter: drop-shadow(15px 10px 10px rgba(255, 255, 255, 0.25));
 }
 
 .joinSessionInput{
   height: 3vw;
   width: 11vw;
   text-align: center;
+  font-family: subtitleFont;
   margin-bottom: 1vw;
+  font-size: 0.7em;
+  border-radius: 0.3em;
+  border-color: transparent;
 }
+
+.joinSessionInput:focus{
+  font-size: 1em;
+}
+
+.swal-title{
+  font-family: titleFont;
+  color: #ffb842;
+  -webkit-text-stroke: 0.04em black;
+}
+
+.swal-text{
+  font-family: subtitleFont;
+  color: white;
+}
+
+.swal-modal{
+  background-color: #0069ba;
+}
+
+.swal-button{
+  background-color: #153365;
+  font-family: subtitleFont;
+}
+

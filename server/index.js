@@ -6,6 +6,7 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server, {cors: {origin: ORIGIN}});
 
 const activeSessions = []
+const gameTurns = []
 
 server.listen(PORT, () => {
   console.log('Server running...');
@@ -27,12 +28,21 @@ io.on('connection', (socket) => {
   })
 
   socket.on('joinSession', (session) => {
-    socket.broadcast.emit('session', updateActiveSession(session))
+    socket.broadcast.emit('session', updateActiveSession(session));
   })
 
   socket.on('getActiveSessions', () => {
-    socket.emit('session', getCurrentActiveSessions())
+    socket.emit('session', getCurrentActiveSessions());
   })
+  
+  socket.on('addGameTurn', (turn) => {
+    socket.emit('gameTurn', addGameTurns(turn));
+  })
+
+  socket.on('startGame', (startin) => {
+    socket.broadcast.emit('startGame', startin)
+  })
+
 })
 
 // ---------------
@@ -61,4 +71,9 @@ const removeActiveSession = (oldOne) => {
 
 const getCurrentActiveSessions = () => {
   return activeSessions;
+}
+
+const addGameTurns = (newOne) => {
+  gameTurns.push(newOne);
+  return gameTurns;
 }

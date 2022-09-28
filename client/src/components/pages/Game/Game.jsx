@@ -15,13 +15,18 @@ const Game = () =>{
   const [ownCards, setOwnCards] = useState([])
   const [isChoosingCard, setIsChoosingCard] = useState(true)
   const [pickCardTimer, setPickCardTimer] = useState(-1)
+  const [cardsSelected, setCardsSelected] = useState([])
 
   const initPlayer = () => {
     socket.emit('getActiveSessions')
   }
 
   const startGame = () => {
-    if (connectedPlayers.length > 1) {
+    if (connectedPlayers.length > 1 && isGameHost) {
+      socket.emit('startGame', { session: params.sessionid })
+      setGameHasStarted(true)
+      getRandomCards()
+    } else if (!isGameHost) {
       setGameHasStarted(true)
       getRandomCards()
     } else {
@@ -44,6 +49,20 @@ const Game = () =>{
       }
     }
     setOwnCards(newHand)
+    startPickTimer()
+  }
+
+  const startPickTimer = () => {
+    let counter = 150
+    const timer = setInterval(() => {
+      setPickCardTimer(counter)
+      counter -= 1
+
+      if (counter === -1) {
+        clearInterval(timer)
+        setPickCardTimer(-1)
+      }
+    }, 1000)
   }
 
   const drawCard = (prevHand) => {
@@ -57,23 +76,53 @@ const Game = () =>{
       prevHand.splice(prevHand.indexOf(undefined), 1)
     }
     setOwnCards([...prevHand, newCard])
+    setIsChoosingCard(false)
   }
 
   const pickCard = (cardToUse) => {
+    socket.emit('addGameTurn', {
+      session: params.sessionid,
+      player: socket.id,
+      nickname: params.alias.replace(/_+/, ' '),
+      card: cardToUse
+    })
     const handCopy = ownCards
     const newHand = []
     handCopy.forEach((elem) => {
       if (elem !== cardToUse) newHand.push(elem)
     })
-    // setOwnCards(newHand)
     drawCard(newHand)
+  }
+
+  const checkRoundWinner = () => {
+    // Check which player won the round and assign corresponding points TODO
   }
 
   const updatePlayersConnected = (sessions) => {
     const currentSession = sessions.find((sess) => sess.id === params.sessionid)
     setConnectedPlayers(currentSession.players)
+    console.log('Connected: ', currentSession.players)
     if (currentSession.host === socket.id) {
       setIsGameHost(true)
+    }
+  }
+
+  const updatePickedCards = (gameTurns) => {
+    cardsToSet = []
+    gameTurns.forEach((elem) => {
+      if (elem.session === params.sessionid){
+        cardsToSet.push({ player: elem.nickname, card: elem.card })
+      }
+    })
+    setCardsSelected(cardsToSet)
+
+    // Check if turn is over
+    if (cardsToSet.length === connectedPlayers.length) checkRoundWinner()
+  }
+
+  const validateGameStart = (gameID) => {
+    if (gameID.session === params.sessionid) {
+      startGame()
     }
   }
 
@@ -83,6 +132,8 @@ const Game = () =>{
 
   useEffect(()=>{
     socket.on('session', (activeSessions) => updatePlayersConnected(activeSessions))
+    socket.on('gameTurn', (gameTurns) => updatePickedCards(gameTurns))
+    socket.on('startGame', (gameInfo) => validateGameStart(gameInfo))
   }, [])
 
   return(
@@ -135,22 +186,35 @@ const Game = () =>{
             </div>
         :
         <div className="gameContainer">
+          {isChoosingCard ?
+              <div>
+                <div className="pickCardTitle">Pick your card!</div>
+                {pickCardTimer >= 0 && 
+                  <div className="pickCardTimer"><b>{pickCardTimer}</b></div>
+                }
+                <div className="ownCardsContainer">
+                  {ownCards.map((handCard) => {
+                    return(
+                      <div key={`${handCard.cardNumber}-${handCard.cardImage}`} className="cardContainer" onClick={() => pickCard(handCard)}>
+                        <img className="cardImage" src={handCard.cardImage} alt={`${handCard.cardNumber} - ${handCard.cardType}`}/>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            :
+              pickCardTimer >= 0 ?
+                <div className="waitingPickContainer">
+                  <div>Waiting for other players to selecte their cards...</div>
+                  {pickCardTimer >= 0 && 
+                    <div className="pickCardTimer"><b>{pickCardTimer}</b></div>
+                  }
+                </div>
+              :
+                <div>
 
-          <div>
-            <div className="pickCardTitle">Pick your card!</div>
-            {pickCardTimer > -1 && 
-              <div className="pickCardTimer"><b>{pickCardTimer}</b></div>
-            }
-            <div className="ownCardsContainer">
-              {ownCards.map((handCard) => {
-                return(
-                  <div key={`${handCard.cardNumber}-${handCard.cardImage}`} className="cardContainer" onClick={() => pickCard(handCard)}>
-                    <img className="cardImage" src={handCard.cardImage} alt={`${handCard.cardNumber} - ${handCard.cardType}`}/>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
+                </div>
+          }
         </div>
       }
       <Chatbox nickname={params.alias.replace(/_+/, ' ')}/>

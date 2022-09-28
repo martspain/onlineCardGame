@@ -30,7 +30,6 @@ const CreateSession = () => {
   }
 
   const navigateToSession = (createSession) => {
-    console.log(currentActiveSessions)
     if (createSession && currentName !== '') {
       if (!currentActiveSessions.includes(currentCreateSessionID)){
         socket.emit('createSession', {
@@ -38,24 +37,30 @@ const CreateSession = () => {
           players: [{
             userId: socket.id,
             alias: currentName
-          }]
+          }],
+          host: socket.id,
         })
         navigation(`/play/${currentCreateSessionID}/${currentName.replace(/ +/, '_')}`)
       } else {
         swal('Warning', 'Session ID is already in use. Please try again.', 'warning')
       }
     } else if (!createSession && currentJoinSessionID.length === sessionIDLength && currentJoinSessionID !== '' && currentName !== ''){
-      if (currentActiveSessions.find((elem) => elem.id === currentJoinSessionID).players.length < 4) {
-        socket.emit('joinSession', {
-          id: currentJoinSessionID,
-          players: [{
-            userId: socket.id,
-            alias: currentName
-          }]
-        })
-        navigation(`/play/${currentJoinSessionID}/${currentName.replace(/ +/, '_')}`)
+      const expectedSession = currentActiveSessions.find((elem) => elem.id === currentJoinSessionID)
+      if (expectedSession !== undefined) {
+        if (expectedSession.players.length < 4) {
+          socket.emit('joinSession', {
+            id: currentJoinSessionID,
+            players: [{
+              userId: socket.id,
+              alias: currentName
+            }]
+          })
+          navigation(`/play/${currentJoinSessionID}/${currentName.replace(/ +/, '_')}`)
+        } else {
+          swal('Warning', 'The session you are trying to join is full.', 'warning')  
+        }
       } else {
-        swal('Warning', 'The session you are trying to join is full.', 'warning')  
+        swal('Warning', 'The session you are trying to join does not exist. Make sure your code is correct.', 'warning')
       }
     } else if (!createSession && (currentJoinSessionID.length !== sessionIDLength || currentJoinSessionID !== '')) {
       swal('Warning', 'Session ID is not correct.', 'warning')
@@ -65,7 +70,6 @@ const CreateSession = () => {
   }
 
   const updateActiveSessions = (newSessions) => {
-    console.log('NewState: ', newSessions)
     setCurrentActiveSessions(newSessions)
   }
 

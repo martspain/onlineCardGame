@@ -1,4 +1,6 @@
 // Import card images
+// images taken from https://clubpenguin.fandom.com/wiki/List_of_Card-Jitsu_Power_Cards
+// images taken from https://clubpenguin.fandom.com/wiki/List_of_Card-Jitsu_sets
 // ------ FIRE
 import card1 from '../../../assets/images/fire/9.1.png'
 import card2 from '../../../assets/images/fire/9.2.png'

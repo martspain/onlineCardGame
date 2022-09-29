@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 8081
-const ORIGIN = 'http://localhost:8080'
+const PORT = process.env.PORT || 5000
+const ORIGIN = 'https://card-jitsu-uvg.herokuapp.com/'
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {cors: {origin: ORIGIN}});
 const path = require('path')
 
-app.use(express.static(path.join(__dirname + "/public")))
+app.use(express.static("public"));
 
 const activeSessions = []
 const gameTurns = []

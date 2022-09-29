@@ -7,6 +7,7 @@ const io = require('socket.io')(server, {cors: {origin: ORIGIN}});
 
 const activeSessions = []
 const gameTurns = []
+const badgesEarned = []
 
 server.listen(PORT, () => {
   console.log('Server running...');
@@ -37,12 +38,25 @@ io.on('connection', (socket) => {
   
   socket.on('addGameTurn', (turn) => {
     socket.emit('gameTurn', addGameTurns(turn));
+    socket.broadcast.emit('gameTurn', gameTurns);
   })
 
   socket.on('startGame', (startin) => {
-    socket.broadcast.emit('startGame', startin)
+    socket.broadcast.emit('startGame', startin);
   })
 
+  socket.on('cleanTurn', (sessionInfo) => {
+    socket.emit('gameTurn', cleanUpTurns(sessionInfo));
+  })
+
+  socket.on('gameOver', (gameInfo) => {
+    socket.broadcast.emit('gameOver', cleanUpSession(gameInfo));
+  })
+
+  socket.on('badgeEarned', (data) => {
+    socket.emit('badgeEarned', addBadgeEarned(data));
+    socket.broadcast.emit('badgeEarned', badgesEarned);
+  })
 })
 
 // ---------------
@@ -76,4 +90,23 @@ const getCurrentActiveSessions = () => {
 const addGameTurns = (newOne) => {
   gameTurns.push(newOne);
   return gameTurns;
+}
+
+const cleanUpTurns = (sessionInfo) => {
+  gameTurns.forEach((turn, index) => {
+    if (turn.session === sessionInfo.session){
+      gameTurns.splice(index, 1);
+    }
+  })
+  return gameTurns;
+}
+
+const cleanUpSession = (sessionInfo) => {
+  activeSessions.splice(activeSessions.findIndex((element) => element.id === sessionInfo.session), 1);
+  return sessionInfo;
+}
+
+const addBadgeEarned = (data) => {
+  badgesEarned.push(data);
+  return badgesEarned;
 }

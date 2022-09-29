@@ -141,3 +141,43 @@
   justify-content: center;
   align-items: center;
 }
+
+.turnCardContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.badgesContainer{
+  display: flex;
+  flex-direction: row;
+}
+
+.badgeImage{
+  width: 10vw;
+  height: 10vw;
+}
+
+.badgeShowContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.opponentsBadgeContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.opponentsName{
+  font-size: 2vw;
+}
+
+.opponentsBadgeImage{
+  width: 3vw;
+  height: 3vw;
+}

@@ -8,6 +8,7 @@ import Credits from "./components/pages/Credits/credits"
 import Instructions from "./components/pages/Instructions/Instructions"
 import CreateSession from "./components/pages/CreateSession/CreateSession"
 import Game from "./components/pages/Game/Game"
+import GameOver from "./components/pages/GameOver/GameOver"
 import '../connection/connection'
 
 const router = createBrowserRouter([
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
     {
         path: "/about",
         element: <AboutUs />,
+        errorElement: <ErrorPage />
+    },
+    {
+        path: "/gameOver/:winner",
+        element: <GameOver />,
         errorElement: <ErrorPage />
     }
 ])

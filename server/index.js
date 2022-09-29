@@ -14,7 +14,7 @@ server.listen(PORT, () => {
 })
 
 io.on('connection', (socket) => {
-  console.log('User connected: ', socket.id);
+  // console.log('User connected: ', socket.id);
 
   socket.on('message', (data) => {
     socket.broadcast.emit('message', data);

@@ -61,7 +61,6 @@ const Game = () =>{
         if (cardDeck[newIndex] !== undefined) newHand.push(cardDeck[newIndex])
       }
     }
-    console.log(newHand)
     setOwnCards(newHand)
     startPickTimer()
   }

@@ -167,8 +167,9 @@ const Game = () =>{
         })
       }
     }
-    // console.log('Fire, Snow, Water = ', pointsCopy)
+    
     const userHasWon = pointsCopy[0] === 1 && pointsCopy[1] === 1 && pointsCopy[2] === 1
+    console.log('Fire, Snow, Water = ', pointsCopy)
 
     if (userHasWon) {
       setGameOver({state: true, winner: params.alias.replace(/_+/, ' ')})
@@ -295,9 +296,9 @@ const Game = () =>{
         </div>
         {sessionBadges.length > 0 &&
           <>
-            {sessionBadges.map((badge) => {
+            {sessionBadges.map((badge, index) => {
               return(
-                <div key={`${badge.playerID}-${badge.badges}`} className="opponentsBadgeContainer">
+                <div badge={badge} key={index} className="opponentsBadgeContainer">
                   <div className="opponentsName">{badge.player}</div>
                   {badge.badges[0] === 1 && <img className="opponentsBadgeImage" src={fireIcon} alt="Fire earned" />}
                   {badge.badges[1] === 1 && <img className="opponentsBadgeImage" src={iceIcon} alt="Fire earned" />}
@@ -322,9 +323,9 @@ const Game = () =>{
                   Players in Session
                 </b></div>
                 <div className="joinedPlayersList">
-                  {connectedPlayers.map((player) => {
+                  {connectedPlayers.map((player, index) => {
                     return(
-                      <div key={`${player.userId}-${player.alias}`} className="joinedPlayerContainer">
+                      <div player={player} key={index} className="joinedPlayerContainer">
                         <div className="joinedPlayerIcon"></div>
                         <div className="joinedPlayerName">{player.alias}</div>
                       </div>
@@ -343,9 +344,9 @@ const Game = () =>{
                   Players in Session
                 </b></div>
                 <div className="joinedPlayersList">
-                  {connectedPlayers.map((player) => {
+                  {connectedPlayers.map((player, index) => {
                     return(
-                      <div key={`${player.userId}`} className="joinedPlayerContainer">
+                      <div player={player} key={index} className="joinedPlayerContainer">
                         <div className="joinedPlayerIcon"></div>
                         <div className="joinedPlayerName">{player.alias}</div>
                       </div>
@@ -368,9 +369,9 @@ const Game = () =>{
                 <div className="ownCardsContainer">
                   {ownCards.length > 0 ?
                     <>
-                      {ownCards.map((handCard) => {
+                      {ownCards.map((handCard, index) => {
                         return(
-                          <div key={`${handCard.cardNumber}-${handCard.cardImage}`} className="cardContainer" onClick={() => pickCard(handCard)}>
+                          <div handCard={handCard} key={index} className="cardContainer" onClick={() => pickCard(handCard)}>
                             <img className="cardImage" src={handCard.cardImage} alt={`${handCard.cardNumber} - ${handCard.cardType}`}/>
                           </div>
                         )
@@ -390,9 +391,9 @@ const Game = () =>{
                   <div className="ownCardsContainer seecards">
                     {cardsSelected.length > 0 ?
                       <>
-                        {cardsSelected.map((elem) => {
+                        {cardsSelected.map((elem, index) => {
                           return(
-                            <div key={`${elem.playerID}-${elem.card.cardImage}`} className="turnCardContainer">
+                            <div elem={elem} key={index} className="turnCardContainer">
                               <h1>{elem.player}</h1>
                               <img className="cardImage" src={elem.card.cardImage} alt={`${elem.card.cardNumber} - ${elem.card.cardType}`} />
                             </div>

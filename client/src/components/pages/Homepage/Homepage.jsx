@@ -25,11 +25,6 @@ const Homepage = () => {
           </Link>
         </div>
         <div className="menuLinkContainer">  
-          <Link to={'/settings'}>
-            <h1 className="menuLink">Settings</h1>
-          </Link>
-        </div>
-        <div className="menuLinkContainer">  
           <Link to={'/about'}>
             <h1 className="menuLink">About Us</h1>
           </Link>

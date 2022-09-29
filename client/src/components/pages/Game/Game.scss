@@ -1,7 +1,7 @@
 @import 'src/style/responsive';
 
 .waitForHostPopup{
-  background-color: cyan;
+  background-color: #153365;
   border-radius: 10%;
   position: fixed;
   display: flex;
@@ -14,7 +14,7 @@
 }
 
 .startGamePopup{
-  background-color: cyan;
+  background-color: #153365;
   border-radius: 10%;
   position: fixed;
   display: flex;
@@ -27,7 +27,9 @@
 }
 
 .startGameButton{
-  background-color: yellow;
+  background-color: #ffb842;
+  cursor: pointer;
+  font-family: subtitleFont;
   text-align: center;
   width: 15vw;
   height: 5vw;
@@ -46,7 +48,7 @@
   height: 27vw;
   position: absolute;
   top: 3vw;
-  background-color: lightblue;
+  background-color: #0069ba;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -55,10 +57,19 @@
 
 .joinedPlayersTitle{
   font-size: 2em;
+  font-family: subtitleFont;
 }
 
 .joinedPlayersCode{
-  font-size: 3em;
+  font-family: titleFont, Impact;
+  font-size: 2em;
+  text-align: center;
+  color: white;
+  -webkit-text-stroke: 0.04em black;
+  .yellow{
+    color: #ffb842;
+    margin-left: 0.5em;
+  }
 }
 
 .joinedPlayersList{
@@ -79,11 +90,12 @@
   width: 2vw;
   height: 2vw;
   border-radius: 50%;
-  background-color: green;
+  background-color: #43da43;
   margin-right: 2vw;
 }
 
 .joinedPlayerName{
+  font-family: subtitleFont;
   font-size: 1.5em;
 }
 
@@ -91,13 +103,15 @@
   text-align: center;
   width: 25vw;
   height: 5vw;
+  font-family: subtitleFont;
+  color: white;
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   bottom: 3vw;
   border-radius: 3%;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .ownCardsContainer{
@@ -105,16 +119,32 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10vw;
+}
+
+.cardImage{
+  width: 15vw;
+}
+
+.cardImage:hover{
+  filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.95));
+}
+
+.seecards{
+  justify-content:center;
+
+  .cardImage{
+    margin: 0 1.5vw;
+  }
+  
+  .cardImage:hover{
+    filter: none;
+    cursor: not-allowed;
+  }
 }
 
 .cardContainer{
   width: fit-content;
   margin-left: 1vw;
-}
-
-.cardImage{
-  width: 15vw;
 }
 
 .gameContainer{
@@ -124,20 +154,32 @@
   align-items: center;
   width: 100vw;
   height: 100%;
+
+  h1, h2{
+    font-family: subtitleFont;
+    justify-content: center;
+    display: flex;
+  }
 }
 
 .pickCardTitle{
-  font-size: 2em;
+  font-size: 4em;
+  font-family: 'subtitleFont';
   text-align: center;
 }
 
 .pickCardTimer{
-  font-size: 5em;
+  font-size: 1.5em;
+  margin: 0 0 1vw 0;
+  font-family: subtitleFont;
   text-align: center;
 }
 
 .waitingPickContainer{
   display: flex;
+  font-family: subtitleFont;
+  flex-direction: column;
+  font-size: 1.5em;
   justify-content: center;
   align-items: center;
 }
@@ -147,11 +189,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  h1{
+    font-size: 1.5em;
+  }
 }
 
 .badgesContainer{
   display: flex;
+  width: auto;
+  margin: 0.5vw;
   flex-direction: row;
+  justify-content: space-between;
+
+  img{
+    margin: 0 0.5vw;
+  }
 }
 
 .badgeImage{
@@ -162,8 +215,8 @@
 .badgeShowContainer{
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .opponentsBadgeContainer{
@@ -175,6 +228,8 @@
 
 .opponentsName{
   font-size: 2vw;
+  font-family:subtitleFont; 
+  margin: 0 1vw;
 }
 
 .opponentsBadgeImage{

@@ -7,6 +7,7 @@
   bottom: 2vh ;
   filter: drop-shadow(0px 0px 8px #1E1E1E);
   height: 20vw;
+  cursor: pointer;
   // max-width: fit-content;
   width: 20vw;
   right: 5vw;
@@ -102,6 +103,7 @@
   -webkit-text-stroke: 0.04em black;
   font-size: 0.5em;
   background-color: #153365;
+  cursor: pointer;
 
   .closePart2{
     color: #ffb842;

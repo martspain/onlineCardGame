@@ -313,7 +313,10 @@ const Game = () =>{
             <div className="startGamePopup">
               <div className="joinedPlayersContainer">
                 <div className="joinedPlayersCode"><b>
-                  {`Share the code: ${params.sessionid}`}
+                  Share the code: 
+                  <div className="yellow">
+                    {`${params.sessionid}`}
+                  </div>
                 </b></div>
                 <div className="joinedPlayersTitle"><b>
                   Players in Session
@@ -384,7 +387,7 @@ const Game = () =>{
                   {pickCardTimer >= 0 && 
                     <div className="pickCardTimer"><b>{pickCardTimer}</b></div>
                   }
-                  <div className="ownCardsContainer">
+                  <div className="ownCardsContainer seecards">
                     {cardsSelected.length > 0 ?
                       <>
                         {cardsSelected.map((elem) => {

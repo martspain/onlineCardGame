@@ -1,6 +1,6 @@
 import socketIOClient from 'socket.io-client'
 
-const ENDPOINT = 'http://localhost:8081'
+const ENDPOINT = 'https://card-jitsu-uvg.herokuapp.com/'
 const socket = socketIOClient(ENDPOINT)
 
 socket.on('connection');
